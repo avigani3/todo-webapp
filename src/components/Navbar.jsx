@@ -5,7 +5,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Navbar() {
   return (
-    <nav className="bg-gray-800 p-4 text-white flex justify-between items-center">
+    <nav className="bg-[var(--color-sidebar)] p-4 flex justify-between items-center">
       <Link to="/" className="text-lg font-bold">Todo App</Link>
       <div className="flex items-center gap-4">
         <Link to="/profile" className="text-lg">

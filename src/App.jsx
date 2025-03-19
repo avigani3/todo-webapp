@@ -71,7 +71,7 @@ function TodoApp() {
           value={task}
           onChange={(e) => setTask(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="Aggiungi una task"
+          placeholder="Aggiungi un task"
         />
         <Button onClick={addTask}>Aggiungi</Button>
       </div>

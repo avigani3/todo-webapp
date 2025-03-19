@@ -1,3 +1,3 @@
 # React + Vite
 
-# Simple Todo App
+Simple Todo App with React
