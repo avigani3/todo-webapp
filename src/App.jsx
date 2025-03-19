@@ -85,6 +85,12 @@ function TodoApp() {
     }
   };
 
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "completed") return task.completed;
+    if (filter === "notCompleted") return !task.completed;
+    return true;
+  });
+
   return (
     <div className="max-w-md mx-auto mt-10 p-4 border rounded-lg shadow-lg">
       <h2 className="text-xl font-bold mb-4 text-center">Todo App</h2>
@@ -98,11 +104,20 @@ function TodoApp() {
         />
         <Button onClick={addTask}>Aggiungi</Button>
       </div>
+      <div className="mb-4">
+        <Tabs defaultValue={filter}>
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="all" onClick={() => setFilter("all")}>Tutti</TabsTrigger>
+            <TabsTrigger value="notCompleted" onClick={() => setFilter("notCompleted")}>Incompleti</TabsTrigger>
+            <TabsTrigger value="completed" onClick={() => setFilter("completed")}>Completati</TabsTrigger>
+          </TabsList>
+        </Tabs>
+      </div>
       <div>
-        {tasks.length === 0 ? (
+        {filteredTasks.length === 0 ? (
           <p className="text-center text-gray-500">Nessun task</p>
         ) : (
-          tasks.map((t) => (
+          filteredTasks.map((t) => (
             <Card key={t.id} className="mb-2 flex-row justify-between p-2 items-center cursor-pointer" onClick={() => goToTaskPage(t.id)}>
               <div className="flex items-center">
                 <input
