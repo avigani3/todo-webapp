@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import supabase from "../utils/supabase-client.js";
 import { useAuth } from "../context/AuthContext.jsx"; // Importa il contesto utente
@@ -36,12 +35,18 @@ export default function TaskPage() {
       } else {
         setTask(data);
         setNewText(data.text);
+        setError(""); // Reset error state
       }
 
       setLoading(false);
     }
 
     fetchTask();
+
+    // Cleanup function to reset error state when component unmounts or taskId changes
+    return () => {
+      setError("");
+    };
   }, [taskId, user]);
 
   // Funzione per aggiornare il task
@@ -83,6 +88,9 @@ export default function TaskPage() {
           {successMessage && (
             <p className="text-green-600 text-sm mt-2">{successMessage}</p>
           )}
+            <div className="text-sm text-gray-500 mt-2">
+              <p className="font-semibold">Creato il {new Date(task.created_at).toLocaleDateString()}</p>
+            </div>
           <div className="flex justify-between mt-4">
             <Button onClick={updateTask}>Salva</Button>
             <Button variant="outline" onClick={() => navigate("/")}>
