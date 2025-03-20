@@ -32,7 +32,8 @@ function TodoApp() {
       const { data: tasks, error } = await supabase
         .from("TodoList")
         .select("*")
-        .eq("user_id", user.id);
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false });
 
       if (error) {
         console.error("Errore nel recupero dei task:", error);
