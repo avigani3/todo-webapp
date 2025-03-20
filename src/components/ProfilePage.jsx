@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useAuth } from "@/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 
 export default function ProfilePage() {
   const { user, signOut } = useAuth();
@@ -37,8 +37,8 @@ export default function ProfilePage() {
         </div>
       ) : (
         <Card>
-          <CardContent className="p-4">
-            <p className="text-lg font-semibold">Email: {user.email}</p>
+          <CardContent>
+            <p className="text-base font-semibold">Email: {user.email}</p>
             <Button className="mt-4 w-full" onClick={handleLogout}>
               Esci
             </Button>

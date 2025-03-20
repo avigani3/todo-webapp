@@ -1,3 +1,5 @@
-# React + Vite
+# React + Supabase
 
-Simple Todo App with React
+CRUD Todo App with user authentication
+
+![Homepage](./assets/homepage.png)
