@@ -11,6 +11,9 @@ import Navbar from "@/components/Navbar";
 import TaskPage from "@/components/TaskPage";
 import ProfilePage from "@/components/ProfilePage";
 import supabase from "./supabase-client.js";
+import { AuthProvider } from "./AuthContext";
+import SignUpForm from "./components/SignUpForm";
+import SignInForm from "./components/SignInForm";
 
 function TodoApp() {
 
@@ -145,16 +148,20 @@ function TodoApp() {
 export default function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+    <AuthProvider>
     <FilterProvider>
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<TodoApp />} />
-        <Route path="/task/:taskId" element={<TaskPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<TodoApp />} />
+          <Route path="/task/:taskId" element={<TaskPage />} />
+          <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/signin" element={<SignInForm />} />
+          <Route path="/profile" element={<ProfilePage />} />
       </Routes>
-    </Router>
+      </Router>
     </FilterProvider>
+    </AuthProvider>
     </ThemeProvider>
   );
 }
